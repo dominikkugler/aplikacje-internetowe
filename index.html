@@ -219,58 +219,31 @@
 			<div class="jumbotron">
 				<h1>Projekt 2</h1>
 
-				<div class="quiz-container">
-					<div id="question-container">
+				<h2>Zadanie 5 - Quiz <br> </h2>
 
-					</div>
-					<div id="input-container">
-						<input type="number" id="answer" placeholder="Twoja odpowiedź">
-						<button onclick="submitAnswer()">Sprawdź odpowiedź</button>
-					</div>
+				<button onclick="Start()">Zacznij quiz</button>
 					<div id="result" class="result"></div>
 				</div>
 				<script>
-					var questions = [
+					let questions = [
 						['Ile księżyców ma Ziemia?', 1],
 						['Ile księżyców ma Saturn?', 62],
 						['Ile księżyców ma Wenus?', 0]
 					];
+
+					function Start() {
+						let score = 0;
+						for (let i = 0; i < questions.length; i++) {
+							let answer = prompt(questions[i][0]);
+							if (answer == questions[i][1]) {
+								score++;
+							}
+						}
+
+						alert('Koniec quizu, zdobyles ' + score + '/3 punkty');
+					}
 					
-					var currentQuestionIndex = 0;
-					var score = 0;
-
-					function showQuestion() {
-						if (currentQuestionIndex < questions.length) {
-							var question = questions[currentQuestionIndex][0];
-							document.getElementById('question-container').innerHTML = '<p class="question">' + question + '</p>';
-							document.getElementById('answer').value = '';
-						} else {
-							showResult();
-						}
-					}
-
-					function submitAnswer() {
-						var answer = parseInt(document.getElementById('answer').value);
-						var correctAnswer = questions[currentQuestionIndex][1];
-
-						if (answer == correctAnswer) {
-							alert('Prawidłowa odpowiedź!');
-							score++;
-						} else {
-							alert('Błąd. Prawidłowa odpowiedź to ' + correctAnswer);
-						}
-
-						currentQuestionIndex++;
-						showQuestion();
-					}
-
-					function showResult() {
-						document.getElementById('question-container').innerHTML = '';
-						document.getElementById('input-container').style.display = 'none';
-						document.getElementById('result').innerHTML = 'Twój wynik: ' + score + '/' + questions.length;
-					}
-
-					showQuestion();
+					
     			</script>	
 			</div>
 		</div>
