@@ -23,6 +23,41 @@
 <script src="http://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
 <script src="js/jquery.easing.1.3.min.js"></script>
 <script src="js/jquery.easing.compatibility.js"></script>
+<script>
+	let score = 0;
+	let q = 0;
+
+	const questions = [
+		['Ile to 2+2?','4'],
+		['Ile to 2+3?','5'],
+		['Ile to 2+4?','6'],
+		['Ile to 2+5?','7'],
+		['Ile to 2+6?','8'],
+		['Ile to 2+7?','9']
+	];
+
+	function testQuestion() {
+		answer = document.getElementById("quizAnswer").value;
+		if (answer === questions[q][1]) {
+			score++;
+		}
+		q++;
+		document.getElementById("quizAnswer").value = '';
+		Quiz();
+	}
+
+	function Quiz () {
+		
+		if (q == questions.length) {
+			document.getElementById("quizQuestion").style.display = 'none';
+			document.getElementById("quizAnswer").style.display = 'none';
+			document.getElementById("quizScore").innerHTML = "Koniec quizu. Wynik to: "+score;
+		}
+			document.getElementById("quizQuestion").innerHTML = questions[q][0];
+			document.getElementById("quizScore").innerHTML = 'Twoj obecny wynik to: '+score;
+	}
+
+</script>
 
 
 </head>
@@ -78,6 +113,7 @@
 	<!-- Main container -->
 	<section id="main-page">
 		<div class="container">
+
 			<div class="jumbotron">
 				<h1>Języki wysokiego poziomu <br> w aplikacjach internetowych</h1>
 				<div class="row">
@@ -120,7 +156,6 @@
 						<p id="indeks"></p>
 					</div>
 				</div>
-
 			</div>
 			<script>
 				document.getElementById("nazwisko").innerHTML = 'Kugler';
@@ -137,116 +172,13 @@
 		<div class="container">
 			<div class="jumbotron">
 				<h1>Projekt 1</h1>
-				<script defer>
-					let name = prompt('Jak masz na imię?', '');
-				</script>
-				<script defer>
-					document.write('<p>Ćw. 1. Witaj, ' + name + '</p>');
-				</script>
-				<div>
-					<h2>Zad.1</h2>
-					<script>
-						let tablica = ['Ferrari','Lamborghini','Mercedes']
-
-						document.write('Pierwszy element: ' +tablica[0] + '<br>')
-						document.write('Ostatni element przed edycją: ' +tablica[tablica.length-1] + '<br>') 
-
-						tablica[tablica.length-1] = 'Maybach'
-						document.write('Ostatni element po edycji: ' +tablica[tablica.length-1] + '<br>') 
-
-						tablica[3] = 'BMW'
-						document.write('Nowy element: ' + tablica[3] + '<br>')
-
-						tablica.push('Audi','Skoda')
-						document.write('push: ' +tablica + '<br>')
-
-						tablica.unshift('Honda','Nissan')
-						document.write('unshift: ' +tablica)
-
-						document.write('<br> Polowa elementow tablicy przy pomocy for <br>')
-						for(let i = 0; i < tablica.length/2; i++){
-							document.write(tablica[i] + '<br>')
-						}
-					</script>
+				<div class="quiz">
+					<button class="quizButton" onclick="Quiz()">Rozpocznij quiz</button>
+					<h3 id="quizQuestion"></h3>
+					<br><input id="quizAnswer">
+					<br><h6 id="quizScore"></h6>
+					<br><button id="next" onclick="testQuestion()">Następne pytanie</button>
 				</div>
-				<div>
-					<h2>Zad.2</h2>
-					<script async>
-						let nowaTablica = ['czarny','bialy','czerwony','zielony']
-
-						document.write('<p>Pierwszy element to <strong>');
-						document.write(nowaTablica[0] + '</strong></p>');
-
-						document.write('<p>Ostatni element to <strong>');
-						document.write(nowaTablica[nowaTablica.length-1] + '</strong></p>');
-
-						nowaTablica.unshift('niebieski')
-						document.write('<p>Pierwszy element to <strong>');
-						document.write(nowaTablica[0] + '</strong></p> <br> <br>');
-
-						document.write('Połowa elementow tablicy przy pomocy while <br>')
-						let i = 0;
-						while(i < nowaTablica.length/2){
-							document.write(nowaTablica[i] + '<br>')
-							i++
-						}
-					</script>
-					<button onclick="wyswietlDane()">Wyswietl dane</button>
-					<br>
-					
-					<script>
-						function wyswietlDane(){
-							let imie = document.getElementById('imie').innerHTML
-							let nazwisko = document.getElementById('nazwisko').innerHTML
-							let grupa = document.getElementById('grupa').innerHTML
-							let email = document.getElementById('email').innerHTML
-							let indeks = document.getElementById('indeks').innerHTML
-							alert('Imie: ' + imie + '\nNazwisko: ' + nazwisko + '\nGrupa: ' + grupa + '\nEmail: ' + email + '\nIndeks: ' + indeks)
-						}
-					</script>	
-					<script async>
-						const scriptCounter = document.scripts.length;
-						document.write('Ilosc elementow script na stronie: ' + scriptCounter)
-					</script>
-				</div>
-			</div>
-		</div>
-	</section>
-
-
-	<section id="projekt2">
-		<div class="container">
-			<div class="jumbotron">
-				<h1>Projekt 2</h1>
-
-				<h2>Zadanie 5 - Quiz <br> </h2>
-
-				<button onclick="Start()">Zacznij quiz</button>
-					<div id="result" class="result"></div>
-				</div>
-				<script>
-					let questions = [
-						['Ile księżyców ma Ziemia?', 1],
-						['Ile księżyców ma Saturn?', 62],
-						['Ile księżyców ma Wenus?', 0]
-					];
-
-					function Start() {
-						let score = 0;
-						for (let i = 0; i < questions.length; i++) {
-							let answer = prompt(questions[i][0]);
-							if (answer == questions[i][1]) {
-								score++;
-							} else {
-								alert("Blad! Prawidlowa odpowiedz to: " +questions[i][1]);
-							}
-						}
-
-						alert('Koniec quizu, zdobyles ' + score + '/3 punkty');
-					}
-					
-					
-    			</script>	
 			</div>
 		</div>
 	</section>
