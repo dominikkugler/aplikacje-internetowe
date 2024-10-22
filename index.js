@@ -1,13 +1,30 @@
-const {UniqueString,UniqueNumber,uuid} = require('unique-string-generator');
+const http = require('http');
+const fs = require('fs');
+const server = http.createServer(function (req, res) {
+    getTitles(res);
+}).listen(8000, "127.0.0.1");
 
-for (i=0; i<10; i++) {
-    console.log('Zestaw nr '+(i+1));
-    console.log(UniqueString());
-    console.log(UniqueNumber());
-    console.log(uuid.v4());
-    console.log('');
+function getTitles(res) {
+    fs.readFile('./titles.json', function (err, data) {
+        if (err) return hadError(err, res);
+        getTemplate(JSON.parse(data.toString()), res);
+    });
 }
 
-console.log('unique-string generator to moduł pozwalający');
-console.log('generować niemal w 100% unikalne stringi, liczby, lub identyfikatory');
-console.log('Może być przydatny do walidacji sesji, emaili, id użytkowników zarówno na froncie jak i na backendzie');
+function getTemplate(titles, res) {
+    fs.readFile('./template.html', function (err, data) {
+        if (err) return hadError(err, res);
+        formatHtml(titles, data.toString(), res);
+    });
+}
+
+function formatHtml(titles, tmpl, res) {
+    let html = tmpl.replace('%', titles.join('</li><li>'));
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.end(html);
+}
+
+function hadError(err, res) {
+    console.error(err);
+    res.end('Error');
+}
