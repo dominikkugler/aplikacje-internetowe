@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Counter from './components/Counter';
+import CounterWrong from './components/CounterWrong';
+import HandleClick from './components/HandleClick';
+import HandleMouseOver from './components/HandleMouseOver';
+import ShowImage from './components/ShowImage';
+import LoadDataFromJson from './components/LoadDataFromJson';
+import UploadFile from './components/UploadFile';
+import ChangeStyle from './components/ChangeStyle';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Counter />
+      <CounterWrong />
+      <HandleClick />
+      <HandleMouseOver />
+      <ShowImage />
+      <LoadDataFromJson />
+      <UploadFile />
+      <ChangeStyle />
     </div>
   );
 }
