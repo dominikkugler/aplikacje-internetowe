@@ -4,6 +4,15 @@ const nextConfig = {
     basePath: '/aplikacje-internetowe',
     assetPrefix: './',
     trailingSlash: true,
+    async redirects() {
+      return [
+        {
+          source: '/',
+          destination: '/', // Redirect root to /about
+          permanent: true, // Permanent (301) redirect
+        },
+      ];
+    },
   };
   
   export default nextConfig;

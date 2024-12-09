@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-function AboutMe() {
+function Page() {
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
       <h1>O mnie</h1>
@@ -39,4 +39,4 @@ function AboutMe() {
   );
 }
 
-export default AboutMe;
+export default Page;
