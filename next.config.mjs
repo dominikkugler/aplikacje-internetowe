@@ -2,16 +2,7 @@
 const nextConfig = {
     output: 'export',
     assetPrefix: './',
-    trailingSlash: true,
-    async redirects() {
-      return [
-        {
-          source: '/',
-          destination: '/', // Redirect root to /about
-          permanent: true, // Permanent (301) redirect
-        },
-      ];
-    },
+    trailingSlash: true
   };
   
   export default nextConfig;
