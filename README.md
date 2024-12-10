@@ -1,1 +1,1 @@
-dominikkugler.github.io/aplikacje-internetowe
+https://vercel-next-snowy-two.vercel.app/
